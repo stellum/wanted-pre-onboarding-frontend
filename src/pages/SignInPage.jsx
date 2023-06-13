@@ -23,10 +23,9 @@ const SignIn = () => {
         password: input.password,
       });
 
-      const access_token = response?.data?.access_token;
-      localStorage.setItem("access_token", access_token);
-      console.log(localStorage.getItem("access_token"));
       if (response.status === 200) {
+        const token = response?.data?.access_token;
+        localStorage.setItem("token", token);
         alert("로그인이 완료되었습니다");
         navigate("/todo");
       } else {

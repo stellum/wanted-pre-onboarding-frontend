@@ -3,6 +3,7 @@ import classes from "./Router.module.css";
 import HomePage from "../pages/HomePage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
+import TodoPage from "../pages/TodoPage";
 
 const Router = () => {
   return (
@@ -11,6 +12,9 @@ const Router = () => {
         <nav className={classes.nav}>
           <Link to="/" className={classes.a}>
             홈
+          </Link>
+          <Link to="/todo" className={classes.a}>
+            Todo
           </Link>
           <Link to="/signin" className={classes.a}>
             로그인
@@ -23,6 +27,7 @@ const Router = () => {
 
       <Routes>
         <Route path="/" name="Home" element={<HomePage />} />
+        <Route path="/todo" name="Todo" element={<TodoPage />} />
         <Route path="/signin" name="로그인" element={<SignInPage />} />
         <Route path="/signup" name="회원가입" element={<SignUpPage />} />
       </Routes>

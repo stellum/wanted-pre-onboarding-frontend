@@ -1,13 +1,21 @@
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 130px;
   align-items: center;
   min-height: 100vh;
 }
 
-.title {
+.header {
+  font-size: 50px;
+}
+
+.text {
   font-weight: 400;
   font-size: 1.25rem;
   margin: 0.25rem 0 0 0;
   color: #593884;
+}
+
+.btn {
 }
