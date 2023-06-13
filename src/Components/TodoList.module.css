@@ -1,4 +1,22 @@
-.container {
-  width: 100%;
-  margin-left: 130px;
+.li {
+  width: 800px;
+  font-size: 22px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+.input {
+  width: 300px;
+  margin-right: 20px;
+}
+
+.btn {
+  background-color: #5a6175;
+  cursor: pointer;
+  padding: 0.65rem 1.3rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-right: 4px;
+  font-size: 16px;
 }

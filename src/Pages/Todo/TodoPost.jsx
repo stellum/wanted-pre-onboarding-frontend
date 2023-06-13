@@ -85,39 +85,43 @@ const Todo = () => {
 
   return (
     <>
-      <header className={classes.header}>
-        <h1>Todo 게시판</h1>
-        <div className={classes.container}>
-          <input
-            className={classes.input}
-            data-testid="new-todo-input"
-            value={todo}
-            onChange={handleTodo}
-          />
-          <button
-            className={classes.button}
-            onClick={onCreatePost}
-            data-testid="new-todo-add-button"
-          >
-            추가
-          </button>
-        </div>
-      </header>
-
-      {todoList.map((todo, idx) => {
-        return (
-          <>
-            <TodoList
-              id={todo.id}
-              idx={idx}
-              todo={todo}
-              todoList={todoList}
-              setTodoList={setTodoList}
-              handleDelete={handleDelete}
+      <div className={classes.parentContainer}>
+        <header className={classes.header}>
+          <h1>Todo 게시판</h1>
+          <div className={classes.container}>
+            <input
+              className={classes.input}
+              data-testid="new-todo-input"
+              value={todo}
+              onChange={handleTodo}
             />
-          </>
-        );
-      })}
+            <button
+              className={classes.button}
+              onClick={onCreatePost}
+              data-testid="new-todo-add-button"
+            >
+              추가
+            </button>
+          </div>
+        </header>
+
+        <div className={classes.list}>
+          {todoList.map((todo, idx) => {
+            return (
+              <>
+                <TodoList
+                  id={todo.id}
+                  idx={idx}
+                  todo={todo}
+                  todoList={todoList}
+                  setTodoList={setTodoList}
+                  handleDelete={handleDelete}
+                />
+              </>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

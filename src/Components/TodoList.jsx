@@ -61,34 +61,46 @@ export const TodoList = ({
   };
 
   return (
-    <li>
+    <li className={classes.li}>
       <label>
         <input type="checkbox" value={todo.isCompleted} onClick={handleCheck} />
         {modify ? (
           <>
             <input
+              className={classes.input}
               type="text"
               data-testid="modify-input"
               value={newText}
               onChange={handleModifyInput}
             />
             <button
+              className={classes.btn}
               data-testid="submit-button"
               onClick={() => handleModifySubmit(id)}
             >
               제출
             </button>
-            <button data-testid="cancel-button" onClick={handleCancel}>
+            <button
+              className={classes.btn}
+              data-testid="cancel-button"
+              onClick={handleCancel}
+            >
               취소
             </button>
           </>
         ) : (
           <>
             <span>{todo.todo}</span>
-            <button data-testid="modify-button" onClick={handleModify}>
+
+            <button
+              data-testid="modify-button"
+              onClick={handleModify}
+              className={classes.btn}
+            >
               수정
             </button>
             <button
+              className={classes.btn}
               data-testid="delete-button"
               onClick={() => {
                 handleDelete(id);
