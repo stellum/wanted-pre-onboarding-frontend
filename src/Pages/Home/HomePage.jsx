@@ -8,7 +8,7 @@ const HomePage = () => {
       <p className={classes.text}>
         2023 원티드 프리온보딩
         <br />
-        프론트엔드 인턴쉽 선발과제
+        프론트엔드 인턴쉽 선발 과제
       </p>
       <Link to="/todo">
         <button className={classes.btn}>Get Started</button>
