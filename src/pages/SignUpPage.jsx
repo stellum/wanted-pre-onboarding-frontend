@@ -35,7 +35,7 @@ const SignUpPage = () => {
           onChange={setSignUpData}
           data-testid="email-input"
         />
-        {emailError && <div className={classes.error}>{emailError}</div>}
+        {emailError || <div className={classes.error}>{emailError}</div>}
 
         <input
           name="password"
@@ -48,7 +48,15 @@ const SignUpPage = () => {
         />
         {passwordError && <div className={classes.error}>{passwordError}</div>}
 
-        <button data-testid="signup-button">회원가입</button>
+        <button
+          type="submit"
+          data-testid="signup-button"
+          disabled={
+            !signUpData.email.includes("@") || signUpData.password.length < 8
+          }
+        >
+          회원가입
+        </button>
       </form>
     </>
   );
