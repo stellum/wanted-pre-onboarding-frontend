@@ -3,7 +3,7 @@ import classes from "./Router.module.css";
 import HomePage from "../Pages/Home/HomePage";
 import SignInPage from "../Pages/SignIn/SignInPage";
 import SignUpPage from "../Pages/SignUp/SignUpPage";
-import TodoPage from "../Pages/Todo/TodoPage";
+import TodoPost from "../Pages/Todo/TodoPost";
 
 const Router = () => {
   const loggedIn = localStorage.getItem("isLoggedIn");
@@ -33,18 +33,18 @@ const Router = () => {
         <Route
           path="/signup"
           name="회원가입"
-          element={loggedIn ? <TodoPage /> : <SignUpPage />}
+          element={loggedIn ? <TodoPost /> : <SignUpPage />}
         />
 
         <Route
           path="/signin"
           name="로그인"
-          element={loggedIn ? <TodoPage /> : <SignInPage />}
+          element={loggedIn ? <TodoPost /> : <SignInPage />}
         />
         <Route
           path="/todo"
           name="Todo"
-          element={!loggedIn ? <SignInPage /> : <TodoPage />}
+          element={!loggedIn ? <SignInPage /> : <TodoPost />}
         />
       </Routes>
     </BrowserRouter>
