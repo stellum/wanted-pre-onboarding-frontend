@@ -14,12 +14,22 @@ const Todo = () => {
     if (!loggedIn) navigate("/signin");
   }, []);
 
+  const createId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2);
+  };
+
   const handleTodo = (e) => {
     setTodo(e.target.value);
   };
 
   const onCreatePost = () => {
-    setTodoList([todo, ...todoList]);
+    const obj = {
+      id: createId(),
+      todo: todo,
+      isChecked: false,
+    };
+
+    setTodoList([obj, ...todoList]);
     setTodo("");
   };
 
@@ -44,10 +54,16 @@ const Todo = () => {
         </div>
       </header>
 
-      {todoList.map((todo) => {
+      {todoList.map((todo, idx) => {
         return (
           <>
-            <TodoList todoInput={todo} />
+            <TodoList
+              id={todo.id}
+              idx={idx}
+              todo={todo}
+              todoList={todoList}
+              setTodoList={setTodoList}
+            />
           </>
         );
       })}

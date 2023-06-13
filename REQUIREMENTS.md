@@ -69,7 +69,7 @@
 
 ## Assignment 7
 
-- [ ] TODO의 체크박스를 통해 완료 여부를 수정
+- [x] TODO의 체크박스를 통해 완료 여부를 수정
 
 ## Assignment 8
 
