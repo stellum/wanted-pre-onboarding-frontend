@@ -1,11 +1,14 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import classes from "./Router.module.css";
-import HomePage from "../pages/HomePage";
-import SignInPage from "../pages/SignInPage";
-import SignUpPage from "../pages/SignUpPage";
-import TodoPage from "../pages/TodoPage";
+import HomePage from "../Pages/Home/HomePage";
+import SignInPage from "../Pages/SignIn/SignInPage";
+import SignUpPage from "../Pages/SignUp/SignUpPage";
+import TodoPage from "../Pages/Todo/TodoPage";
 
 const Router = () => {
+  const loggedIn = localStorage.getItem("isLoggedIn");
+  console.log(loggedIn, "login");
+
   return (
     <BrowserRouter>
       <div className={classes.container}>
@@ -27,9 +30,22 @@ const Router = () => {
 
       <Routes>
         <Route path="/" name="Home" element={<HomePage />} />
-        <Route path="/todo" name="Todo" element={<TodoPage />} />
-        <Route path="/signin" name="로그인" element={<SignInPage />} />
-        <Route path="/signup" name="회원가입" element={<SignUpPage />} />
+        <Route
+          path="/signup"
+          name="회원가입"
+          element={loggedIn ? <TodoPage /> : <SignUpPage />}
+        />
+
+        <Route
+          path="/signin"
+          name="로그인"
+          element={loggedIn ? <TodoPage /> : <SignInPage />}
+        />
+        <Route
+          path="/todo"
+          name="Todo"
+          element={!loggedIn ? <SignInPage /> : <TodoPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

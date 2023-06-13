@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { clientServer } from "../lib/baseUrl";
-const LOGIN_URL = "/auth/signin";
+import { clientServer } from "../../context/baseUrl";
+const REGISTER_URL = "/auth/signup";
 
-const SignIn = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ email: "", password: "" });
   const [validEmail, setValidEmail] = useState(false);
@@ -16,17 +16,16 @@ const SignIn = () => {
     setInput({ ...input, [name]: value });
   };
 
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
     try {
-      const response = await clientServer.post(LOGIN_URL, {
+      const response = await clientServer.post(REGISTER_URL, {
         email: input.email,
         password: input.password,
       });
 
-      if (response.status === 200) {
-        const token = response?.data?.access_token;
-        localStorage.setItem("token", token);
-        alert("로그인이 완료되었습니다");
+      if (response.status === 201) {
+        alert("회원가입이 완료되었습니다");
+        localStorage.setItem("token", response.data.access_token);
         navigate("/todo");
       } else {
         alert(
@@ -34,9 +33,8 @@ const SignIn = () => {
         );
       }
     } catch (error) {
-      alert(
-        "아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요."
-      );
+      alert("동일한 이메일이 이미 존재합니다. 로그인 페이지로 이동합니다.");
+      navigate("/signin");
       console.error(error);
     }
   };
@@ -52,44 +50,45 @@ const SignIn = () => {
   return (
     <>
       <section>
-        <h1>로그인</h1>
+        <h1>회원가입</h1>
         <br />
+
         <input
           type="text"
           id="email"
           name="email"
+          placeholder="이메일"
           data-testid="email-input"
           autoComplete="off"
-          onChange={handleInput}
           value={input.email}
-          placeholder="이메일"
+          onChange={handleInput}
           required
         />
+
         <input
-          type="password"
-          id="password"
           name="password"
+          placeholder="패스워드"
           data-testid="password-input"
-          onChange={handleInput}
+          type="password"
           value={input.password}
-          placeholder="비밀번호"
+          onChange={handleInput}
           required
         />
         <button
-          data-testid="signin-button"
-          onClick={handleLogin}
+          data-testid="signup-button"
+          onClick={handleSignUp}
           disabled={!validEmail || input.password?.length < 8}
         >
-          로그인
+          회원가입
         </button>
 
         <p>
-          계정이 없으신가요?
-          <a href="/signup"> 회원가입</a>
+          계정이 있으신가요?
+          <a href="/signin"> 로그인하기</a>
         </p>
       </section>
     </>
   );
 };
 
-export default SignIn;
+export default SignUp;

@@ -6,9 +6,9 @@ export const clientServer = axios.create({
 
 clientServer.interceptors.request.use(
   (config) => {
-    const access_token = localStorage.getItem("access_token");
-    if (access_token) {
-      config.headers.Authorization = `Bearer ${access_token}`;
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
