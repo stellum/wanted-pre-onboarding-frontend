@@ -22,6 +22,20 @@ body {
   color: #363636;
 }
 
+section {
+  width: 100%;
+  max-width: 420px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  margin: 100px auto;
+  border: 1px solid gray;
+  border-radius: 10px;
+  color: rgb(73, 73, 73);
+}
+
 span {
   margin-right: 30px;
 }
@@ -30,11 +44,22 @@ input[type="text"],
 input[type="password"],
 button {
   font-family: "Nunito", sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
 
+button {
+  margin-top: 20px;
+  color: white;
+  background-color: #5a6175;
+  cursor: pointer;
+}
+
 input:focus button {
   padding: 0.5rem;
+}
+
+a {
+  text-decoration: none;
 }

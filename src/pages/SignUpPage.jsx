@@ -1,65 +1,93 @@
 import React, { useState, useEffect } from "react";
-import classes from "./SignUpPage.module.css";
-import useInputs from "../lib/hooks/useInputs";
+import { useNavigate } from "react-router-dom";
+import { clientServer } from "../lib/baseUrl";
+const REGISTER_URL = "/auth/signup";
 
-const SignUpPage = () => {
-  const [signUpData, setSignUpData] = useInputs({ email: "", password: "" });
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [input, setInput] = useState({ email: "", password: "" });
+  const [validEmail, setValidEmail] = useState(false);
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setValidEmail(value.includes("@"));
+    }
+    setInput({ ...input, [name]: value });
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const response = await clientServer.post(REGISTER_URL, {
+        email: input.email,
+        password: input.password,
+      });
+
+      if (response.status === 201) {
+        alert("회원가입이 완료되었습니다");
+        navigate("/signin");
+      } else {
+        alert(
+          "아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요."
+        );
+      }
+    } catch (error) {
+      alert("동일한 이메일이 이미 존재합니다.");
+      navigate("/signin");
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    if (!signUpData.email.includes("@")) {
-      setEmailError("이메일에는 @가 포함되어야 합니다.");
-    } else {
-      setEmailError("유효한 이메일 입니다 :)");
-    }
+    const token = localStorage.getItem("token");
 
-    if (signUpData.password.length < 8) {
-      setPasswordError("패스워드는 8자 이상이어야 합니다.");
-    } else {
-      setPasswordError("유효한 패스워드 입니다 :)");
+    if (token) {
+      navigate("/todo");
     }
-  }, [signUpData]);
+  }, [navigate]);
 
   return (
     <>
-      <form className={classes.form}>
+      <section>
         <h1>회원가입</h1>
+        <br />
+
         <input
-          name="email"
-          className={classes.input}
           type="text"
-          placeholder="이메일을 입력해주세요"
           id="email"
-          value={signUpData.email}
-          onChange={setSignUpData}
+          name="email"
+          placeholder="이메일"
           data-testid="email-input"
+          autoComplete="off"
+          value={input.email}
+          onChange={handleInput}
+          required
         />
-        {emailError || <div className={classes.error}>{emailError}</div>}
 
         <input
           name="password"
-          className={classes.input}
-          type="password"
-          placeholder="패스워드를 입력해주세요"
-          value={signUpData.password}
-          onChange={setSignUpData}
+          placeholder="패스워드"
           data-testid="password-input"
+          type="password"
+          value={input.password}
+          onChange={handleInput}
+          required
         />
-        {passwordError && <div className={classes.error}>{passwordError}</div>}
-
         <button
-          type="submit"
           data-testid="signup-button"
-          disabled={
-            !signUpData.email.includes("@") || signUpData.password.length < 8
-          }
+          onClick={handleSignUp}
+          disabled={!validEmail || input.password?.length < 8}
         >
           회원가입
         </button>
-      </form>
+
+        <p>
+          계정이 있으신가요?
+          <a href="/signin"> 로그인하기</a>
+        </p>
+      </section>
     </>
   );
 };
 
-export default SignUpPage;
+export default SignUp;
