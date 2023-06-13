@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.nav {
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 100px;
+  padding-bottom: 10px;
+}
+
+.a {
+  width: 100%;
+  max-width: 420px;
+  font-size: 16px;
+  color: rgb(73, 73, 73);
+  text-decoration: none;
+  padding: 0.35rem;
+  border-radius: 5px;
+}
+.a:hover,
+.a:focus {
+  background-color: rgb(224, 221, 221);
+  font-weight: bold;
+}

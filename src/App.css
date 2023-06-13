@@ -1,28 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  font-family: "Nunito", sans-serif;
-  font-size: 22px;
+:root {
+  min-height: 100vh;
+  font-family: "Nunito", "Inter", "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100vh;
-  background-color: beige;
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem 0.5rem;
+  margin: 0;
+  color: #363636;
 }
 
 section {
@@ -34,31 +31,13 @@ section {
   justify-content: flex-start;
   padding: 1rem;
   margin: 100px auto;
-  border: 1px solid gray;
+  border: 1px solid rgb(212, 212, 212);
   border-radius: 10px;
-  color: rgb(73, 73, 73);
-}
-
-p {
-  width: 100%;
-  max-width: 420px;
-  padding: 1rem;
-  padding-bottom: 5px;
-  font-size: 18px;
-  color: rgb(73, 73, 73);
+  color: rgb(33, 33, 33);
 }
 
 span {
   margin-right: 30px;
-}
-
-a,
-a:visited {
-  width: 100%;
-  max-width: 420px;
-  padding-left: 1rem;
-  font-size: 18px;
-  color: rgb(73, 73, 73);
 }
 
 input[type="text"],
