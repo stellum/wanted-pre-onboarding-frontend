@@ -41,4 +41,6 @@ npm run build
 npm start
 ```
 
-## [Demo](<![wanted-preonboarding-demo](https://github.com/stellum/wanted-pre-onboarding-frontend/assets/57822573/0486514a-a90b-4c43-85ca-cab1a6723cb6)>)&nbsp;&nbsp;&nbsp;&nbsp;[기능 구현 목록](/REQUIREMENTS.md)
+## Demo
+
+![wanted-preonboarding-demo](https://github.com/stellum/wanted-pre-onboarding-frontend/assets/57822573/0486514a-a90b-4c43-85ca-cab1a6723cb6)
