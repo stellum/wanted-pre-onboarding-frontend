@@ -22,20 +22,6 @@ body {
   color: #363636;
 }
 
-section {
-  width: 100%;
-  max-width: 420px;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
-  margin: 100px auto;
-  border: 1px solid rgb(212, 212, 212);
-  border-radius: 10px;
-  color: rgb(33, 33, 33);
-}
-
 span {
   margin-right: 30px;
 }
@@ -49,6 +35,6 @@ button {
   border-radius: 0.5rem;
 }
 
-button {
+input:focus button {
   padding: 0.5rem;
 }
