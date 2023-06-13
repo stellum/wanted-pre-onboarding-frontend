@@ -57,9 +57,8 @@ const SignUp = () => {
           type="text"
           id="email"
           name="email"
-          placeholder="이메일"
+          placeholder="email"
           data-testid="email-input"
-          autoComplete="off"
           value={input.email}
           onChange={handleInput}
           required
@@ -67,7 +66,7 @@ const SignUp = () => {
 
         <input
           name="password"
-          placeholder="패스워드"
+          placeholder="password"
           data-testid="password-input"
           type="password"
           value={input.password}

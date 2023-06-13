@@ -66,10 +66,9 @@ const SignIn = () => {
           id="email"
           name="email"
           data-testid="email-input"
-          autoComplete="off"
           onChange={handleInput}
           value={input.email}
-          placeholder="이메일"
+          placeholder="email"
           required
         />
         <input
@@ -79,7 +78,7 @@ const SignIn = () => {
           data-testid="password-input"
           onChange={handleInput}
           value={input.password}
-          placeholder="비밀번호"
+          placeholder="password"
           required
         />
         <button
