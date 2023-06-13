@@ -5,12 +5,19 @@ import useInputs from "../lib/hooks/useInputs";
 const SignUpPage = () => {
   const [signUpData, setSignUpData] = useInputs({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
     if (!signUpData.email.includes("@")) {
       setEmailError("이메일에는 @가 포함되어야 합니다.");
     } else {
       setEmailError("유효한 이메일 입니다 :)");
+    }
+
+    if (signUpData.password.length < 8) {
+      setPasswordError("패스워드는 8자 이상이어야 합니다.");
+    } else {
+      setPasswordError("유효한 패스워드 입니다 :)");
     }
   }, [signUpData]);
 
@@ -39,6 +46,7 @@ const SignUpPage = () => {
           onChange={setSignUpData}
           data-testid="password-input"
         />
+        {passwordError && <div className={classes.error}>{passwordError}</div>}
 
         <button data-testid="signup-button">회원가입</button>
       </form>
