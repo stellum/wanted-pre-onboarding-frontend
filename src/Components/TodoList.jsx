@@ -25,17 +25,62 @@ export const TodoList = ({
     setNewText(todo.todo);
   };
 
+  const handleModifyInput = (e) => {
+    setNewText(e.target.value);
+  };
+
+  const handleModifySubmit = async (id) => {
+    const newTodoList = [...todoList];
+    newTodoList[idx].todo = newText;
+    setTodoList(newTodoList);
+    setModify(false);
+
+    try {
+      const token = localStorage.getItem("token");
+      await clientServer.put(
+        `${TODO_URL}/${id}`,
+        {
+          todo: newText,
+          isCompleted: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCancel = () => {
+    setNewText(todo.todo);
+    setModify(false);
+  };
+
   return (
     <li>
       <label>
-        <input
-          type="checkbox"
-          checked={todo.isChecked}
-          onChange={handleCheck}
-        />
+        <input type="checkbox" value={todo.isCompleted} onClick={handleCheck} />
         {modify ? (
           <>
-            <input type="text" data-testid="modify-input" value={newText} />
+            <input
+              type="text"
+              data-testid="modify-input"
+              value={newText}
+              onChange={handleModifyInput}
+            />
+            <button
+              data-testid="submit-button"
+              onClick={() => handleModifySubmit(id)}
+            >
+              제출
+            </button>
+            <button data-testid="cancel-button" onClick={handleCancel}>
+              취소
+            </button>
           </>
         ) : (
           <>

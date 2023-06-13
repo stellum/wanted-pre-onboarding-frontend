@@ -18,6 +18,21 @@ const Todo = () => {
     if (!loggedIn) navigate("/signin");
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const headers = {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        };
+        const response = await clientServer.get(TODO_URL, { headers });
+        setTodoList(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const createId = () => {
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
   };
